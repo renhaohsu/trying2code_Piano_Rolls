@@ -1,0 +1,330 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.12/Tone.js"></script>
+    <title>一塊餅乾</title>
+</head>
+<body>
+    <!-- <div class="wrapper" id="piano">
+        <div class="inbeat_wrapper bd_orange_round">
+            <input type="checkbox"  data-note="C5" class="bgc_orange">  </div>
+            <input type="checkbox"  data-note="C5" class="bgc_orange">  </div>
+            <input type="checkbox"  data-note="C5" class="bgc_orange">  </div>
+            <input type="checkbox"  data-note="C5" class="bgc_orange">  </div>
+        </div>
+        <div class="inbeat_wrapper bd_orange_round">
+            <input type="checkbox"  data-note="C5" class="bgc_orange ">  </div>
+            <input type="checkbox"  data-note="C5" class="bgc_orange ">  </div>
+            <input type="checkbox"  data-note="C5" class="bgc_orange ">  </div>
+            <input type="checkbox"  data-note="C5" class="bgc_orange ">  </div>
+        </div>
+    </div> -->
+   
+    <div class="wrapper" id="piano">
+        <div class="bar_wrapper">
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+        </div>
+        <div class="bar_wrapper">
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+        </div>
+        <div class="bar_wrapper">
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" checked/>
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" checked/>
+            </div>
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" checked/>
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+        </div>
+        <div class="bar_wrapper">
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+        </div>
+        <div class="bar_wrapper">
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+        </div>
+        <div class="bar_wrapper">
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+        </div>
+        <div class="bar_wrapper">
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" checked/>
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" checked/>
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" checked/>
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" checked/>
+                <input type="checkbox" class="bgc_orange" checked/>
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" checked/>
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+            <div class="inbeat_wrapper bd_orange_round">
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+                <input type="checkbox" class="bgc_orange" />
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="./index.js"></script>
+</body>
+</html>
