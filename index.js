@@ -63,3 +63,10 @@ function repeat(time) {
   }
   index++;
 }
+
+
+
+const reset_button = document.querySelector(".reset_button")
+reset_button.addEventListener('click', ()=>{
+  document.querySelectorAll("input[type=checkbox]").forEach(ele => ele.checked = false )
+})
