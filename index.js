@@ -1,18 +1,3 @@
-// const synth = new Tone.Synth();
-// synth.oscillator.type = "sine";
-// synth.toMaster();
-
-// const piano = document.getElementById("piano");
-
-// piano.addEventListener("mousedown", e => {
-//     synth.triggerAttack(e.target.dataset.note);
-// });
-
-// piano.addEventListener("mouseup", e => {
-//     synth.triggerRelease();
-// });
-
-
 document.documentElement.addEventListener('mousedown', () => {
   if (Tone.context.state !== 'running') Tone.context.resume();
 });
@@ -39,32 +24,20 @@ let index = 0;
 Tone.Transport.scheduleRepeat(repeat, '8n');
 Tone.Transport.start();
 
-// function repeat(time) {
-//   let step = index % (8*1);  // 一小節有8拍 (44拍 一格input是一個半拍)
-//   for (let i = 0; i < $rows.length; i++) {
-//     let synth = synths[i],
-//         note = notes[i],
-//         $row = $rows[i],
-//         $input = $row.querySelector(`input:nth-child(${step+1})`);
-//       //   console.log($input)
-//     if ($input.checked) synth.triggerAttackRelease(note, '8n', time);
-//   }
-//   index++;
-// }
-
 function repeat(time) {
+  document.querySelectorAll("input[type=checkbox]").forEach(ele => ele.style.border = '' )
+
   let step = index % (8*4);  // 一小節有8拍 * 4個小節 (44拍 一格input是一個半拍)
   for (let i = 0; i < $rows.length; i++) {
     let synth = synths[i],
         note = notes[i];
     let $row = $rows[i].children[ step < 8 ? 0 : step < 16 ? 1 : step < 24 ? 2 : 3]
     let $input = $row.querySelector(`input:nth-child(${step%8+1})`)
+    $input.style.border = '5px double rgb(69, 69, 44)'
     if ($input.checked) synth.triggerAttackRelease(note, '8n', time)
   }
   index++;
 }
-
-
 
 const reset_button = document.querySelector(".reset_button")
 reset_button.addEventListener('click', ()=>{
