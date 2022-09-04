@@ -43,3 +43,23 @@ const reset_button = document.querySelector(".reset_button")
 reset_button.addEventListener('click', ()=>{
   document.querySelectorAll("input[type=checkbox]").forEach(ele => ele.checked = false )
 })
+
+// let trying2code_Piano_Rolls_cookie = {
+//   si:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   la:  [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   sol: [0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   fa:  [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   mi:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   re:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   do:  [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+// }
+
+// // array 和 div > 4*div > 8*input 怎麼對應 ?
+// for(let i=0; i<1; i++){
+//   for(let j=0; j<trying2code_Piano_Rolls_cookie.do.length; j++){
+//     let bar = Math.floor(j / 8); 
+//     let $row = $rows[i].children[bar]
+//     let input = $row.querySelector(`input:nth-child(${j%8+1})`)
+//     console.log(input)
+//   }
+// }
