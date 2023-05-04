@@ -1,22 +1,19 @@
+// 因為chrome等瀏覽器 要求有user行為 之後 才能發出聲音 所以加上這個
 document.documentElement.addEventListener('mousedown', () => {
   if (Tone.context.state !== 'running') Tone.context.resume();
 });
 
+// 實體化七個音符的發聲物件
 const synths = [ new Tone.Synth(), new Tone.Synth(), new Tone.Synth(), new Tone.Synth(), new Tone.Synth(), new Tone.Synth(), new Tone.Synth()  ];
 
-synths[0].oscillator.type = 'sine';
-synths[1].oscillator.type = 'sine';
-synths[2].oscillator.type = 'sine';
-synths[3].oscillator.type = 'sine';
-synths[4].oscillator.type = 'sine';
-synths[5].oscillator.type = 'sine';
-synths[6].oscillator.type = 'sine';
+// 設定七個音符的音色 'sine弦波' (如果不設定聽起來像是普通的方波)
+synths.forEach(e => e.oscillator.type = 'sine')
 
 const gain = new Tone.Gain(0.6);
-gain.toMaster();
-
+gain.toDestination();
 synths.forEach(synth => synth.connect(gain));
 
+// 播放loop
 const $rows = document.body.querySelectorAll('.wrapper > .bar_wrapper'),
       notes = ['B4', 'A4', 'G4', 'F4', 'E4', 'D4', 'C4'];
 let index = 0;
@@ -39,27 +36,52 @@ function repeat(time) {
   index++;
 }
 
-const reset_button = document.querySelector(".reset_button")
+// reset button 把所有音符都關掉
+const reset_button = document.querySelector(".reset.button")
 reset_button.addEventListener('click', ()=>{
   document.querySelectorAll("input[type=checkbox]").forEach(ele => ele.checked = false )
 })
 
-// let trying2code_Piano_Rolls_cookie = {
-//   si:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   la:  [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   sol: [0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   fa:  [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   mi:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   re:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-//   do:  [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-// }
+// save buttom 存檔 並傳送到 mongoDB
+const save_button = document.querySelector(".save.button")
+save_button.addEventListener('click', ()=>{
 
-// // array 和 div > 4*div > 8*input 怎麼對應 ?
-// for(let i=0; i<1; i++){
-//   for(let j=0; j<trying2code_Piano_Rolls_cookie.do.length; j++){
-//     let bar = Math.floor(j / 8); 
-//     let $row = $rows[i].children[bar]
-//     let input = $row.querySelector(`input:nth-child(${j%8+1})`)
-//     console.log(input)
-//   }
-// }
+  // 為了存到 mongodb  要先準備一個 json
+  let piano_rolls_cookie = {
+    si:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    la:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    sol: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    fa:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    mi:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    re:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    dol:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  }
+
+  // 檢查整個鋼琴卷軸 把json格式填好
+  notes_container = document.querySelectorAll('.bar_wrapper')
+  for(let item of notes_container){
+    let note_name = item.classList[0]
+    for (let i=0; i<item.children.length; i++) {
+      let bar = item.children[i]
+      for (let j=0; j<bar.children.length; j++){
+        piano_rolls_cookie[note_name][i*8+j] = bar.children[j].checked ? 1 : 0;
+      }
+    }
+  }
+
+  console.log(piano_rolls_cookie)
+})
+
+
+
+
+
+// si, la, sol, fa, mi, re, dol
+
+// "si":  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+// "la":  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+// "sol": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+// "fa":  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+// "mi":  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+// "re":  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+// "dol":  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]

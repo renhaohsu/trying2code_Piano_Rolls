@@ -82,7 +82,7 @@ input[type=checkbox]:checked:before {
 } */
 
 
-.reset_button {
+.button {
     position: fixed;
     top: 30px;
     right: 30px;
@@ -98,7 +98,7 @@ input[type=checkbox]:checked:before {
                                     supported by Chrome, Edge, Opera and Firefox */
   
 }
-.reset_button:hover {    
+.button:hover {    
     animation: button_hover 5s linear infinite alternate;
 }
 
@@ -113,7 +113,11 @@ input[type=checkbox]:checked:before {
     }
 }
 
-.reset_button:active {
+.button:active {
     font-size: 2.1rem;
 }
 
+.save.button {
+    top: 30px;
+    right: 100px;
+}
