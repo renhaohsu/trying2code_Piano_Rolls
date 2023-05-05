@@ -1,87 +1,61 @@
-// 因為chrome等瀏覽器 要求有user行為 之後 才能發出聲音 所以加上這個
-document.documentElement.addEventListener('mousedown', () => {
-  if (Tone.context.state !== 'running') Tone.context.resume();
-});
+// // 從 secrets拿到值 相當於從.env檔取值
+// const PORT = process.env['PORT']
 
-// 實體化七個音符的發聲物件
-const synths = [ new Tone.Synth(), new Tone.Synth(), new Tone.Synth(), new Tone.Synth(), new Tone.Synth(), new Tone.Synth(), new Tone.Synth()  ];
+// const express = require('express')
 
-// 設定七個音符的音色 'sine弦波' (如果不設定聽起來像是普通的方波)
-synths.forEach(e => e.oscillator.type = 'sine')
+// // express app
+// const app = express()
 
-const gain = new Tone.Gain(0.6);
-gain.toDestination();
-synths.forEach(synth => synth.connect(gain));
+// // routes
+// app.get('/', (req, res) => {
+//   res.json({mssg: '測測看replit能不能當api server'})
+// })
 
-// 播放loop
-const $rows = document.body.querySelectorAll('.wrapper > .bar_wrapper'),
-      notes = ['B4', 'A4', 'G4', 'F4', 'E4', 'D4', 'C4'];
-let index = 0;
+// // listen for requests
+// app.listen(PORT, () => {
+//   console.log('正在聽 port 4000 =) ')
+//   console.log(PORT)
+// })
 
-Tone.Transport.scheduleRepeat(repeat, '8n');
-Tone.Transport.start();
 
-function repeat(time) {
-  document.querySelectorAll("input[type=checkbox]").forEach(ele => ele.style.border = '' )
 
-  let step = index % (8*4);  // 一小節有8拍 * 4個小節 (44拍 一格input是一個半拍)
-  for (let i = 0; i < $rows.length; i++) {
-    let synth = synths[i],
-        note = notes[i];
-    let $row = $rows[i].children[ step < 8 ? 0 : step < 16 ? 1 : step < 24 ? 2 : 3]
-    let $input = $row.querySelector(`input:nth-child(${step%8+1})`)
-    $input.style.border = '5px double rgb(69, 69, 44)'
-    if ($input.checked) synth.triggerAttackRelease(note, '8n', time)
-  }
-  index++;
-}
+// 從 secrets拿到值 相當於從.env檔取值
+const MONGO_URI = process.env['MONGO_URI']
+const PORT = process.env['PORT']
 
-// reset button 把所有音符都關掉
-const reset_button = document.querySelector(".reset.button")
-reset_button.addEventListener('click', ()=>{
-  document.querySelectorAll("input[type=checkbox]").forEach(ele => ele.checked = false )
+const express = require('express')
+const mongoose = require('mongoose')
+const workourRoutes = require('./routes/workouts')
+
+// express app
+const app = express()
+
+// middleware
+app.use(express.json())
+
+app.use((req, res, next) => {
+  console.log(req.path, req.method)
+  next()
 })
 
-// save buttom 存檔 並傳送到 mongoDB
-const save_button = document.querySelector(".save.button")
-save_button.addEventListener('click', ()=>{
+// routes
+app.use('/api/workouts', workourRoutes)
 
-  // 為了存到 mongodb  要先準備一個 json
-  let piano_rolls_cookie = {
-    si:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    la:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    sol: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    fa:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    mi:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    re:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    dol:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  }
+// 連上db
+mongoose.connect(MONGO_URI)
+  .then(() => {
+    // 監聽 requests
+    app.listen(PORT, () => {
+      console.log('連上db 而且正在聽 PORT', PORT)
+    })
+  })
+  .catch((error) => {
+    console.log(error)
+  })
 
-  // 檢查整個鋼琴卷軸 把json格式填好
-  notes_container = document.querySelectorAll('.bar_wrapper')
-  for(let item of notes_container){
-    let note_name = item.classList[0]
-    for (let i=0; i<item.children.length; i++) {
-      let bar = item.children[i]
-      for (let j=0; j<bar.children.length; j++){
-        piano_rolls_cookie[note_name][i*8+j] = bar.children[j].checked ? 1 : 0;
-      }
-    }
-  }
-
-  console.log(piano_rolls_cookie)
+// 把前端的檔案們 傳給瀏覽器
+app.use(express.static('frontend'));
+const path = require('path');
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname + '/frontend/index.html'));
 })
-
-
-
-
-
-// si, la, sol, fa, mi, re, dol
-
-// "si":  [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-// "la":  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-// "sol": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-// "fa":  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-// "mi":  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-// "re":  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-// "dol":  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
