@@ -1,0 +1,123 @@
+body {
+    padding-top: 10vh;
+    /* background-color: rgb(253, 243, 241); */
+    background-color: rgb(30, 30, 30);
+}
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);  /* 等等改4拍*4小節=16 */
+    grid-gap: 10px;
+    grid-auto-rows: minmax(20%, auto);
+    margin: 5px auto;
+}
+/* .one { */
+    /* grid-column: 1 / 2;   */
+    /* 佔第1格到第2格 (從1開始數) */
+    /* grid-row: 1; */
+/* } */
+.bar_wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2px;
+    grid-auto-rows: minmax(100%, auto);
+    height: 50px;
+}
+.inbeat_wrapper {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-gap: 1px;
+    grid-auto-rows: minmax(100%, auto);
+    height: 50px;
+}
+.bd_orange_round {
+    /* border: 2px rgb(253, 213, 138) solid; */
+    border: 2px rgb(71, 52, 17) solid;
+    border-radius: 5px;
+}
+.bgc_orange {
+    /* background-color: rgba(252, 234, 201, 0.932); */
+    background-color: rgba(39, 28, 7, 0.932);   
+}
+
+/* 但firefox排版沒有生效 */
+input[type=checkbox] {
+    position: relative;
+    cursor: pointer;
+    appearance: none;
+    border-radius: 5px;
+}
+input[type=checkbox]:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgb(53, 53, 53);
+}
+input[type=checkbox]:checked:before {
+         content: "";
+         display: block;
+         position: absolute;
+         width: 100%;
+         height: 100%;
+         top: 0;
+         left: 0;
+         background-color:#6b5b30;
+}
+    /* input[type=checkbox]:checked:after {
+         content: "";
+         display: block;
+         width: 100%;
+         height: 100%;
+         border: solid white;
+         border-width: 0 2px 2px 0;
+         -webkit-transform: rotate(45deg);
+         -ms-transform: rotate(45deg);
+         transform: rotate(45deg);
+         position: absolute;
+         top: 2px;
+         left: 6px;
+} */
+
+
+.button {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    font-size: 2rem;
+    filter: contrast(200%) hue-rotate(90deg) grayscale(0.5) drop-shadow(2px 2px 30px blue) invert(25%) ;
+    cursor: pointer;
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+  
+}
+.button:hover {    
+    animation: button_hover 5s linear infinite alternate;
+}
+
+@keyframes button_hover {
+    0% {
+        transform: translateY(0%);
+        filter: contrast(200%) hue-rotate(90deg) grayscale(0.5) drop-shadow(2px 2px 30px blue) invert(25%) ;
+    }
+    100% {
+        transform: translateY(20%);
+        filter: contrast(200%) hue-rotate(350deg) grayscale(0) drop-shadow(2px 2px 30px blue) invert(25%) ;
+    }
+}
+
+.button:active {
+    font-size: 2.1rem;
+}
+
+.save.button {
+    top: 30px;
+    right: 100px;
+}
