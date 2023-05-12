@@ -1,5 +1,8 @@
 # trying2code_Piano_Rolls
 
+架起來的版本: https://portfolio.zesterisk.repl.co/ (但偶爾會因為replit的https憑證到期而打不開)
+沒有接上api的版本: https://qestiorisk.github.io/trying2code_Piano_Rolls/
+
 想要寫一個webapp 可以編曲
 
 因為沒有好用的手機版編曲app
