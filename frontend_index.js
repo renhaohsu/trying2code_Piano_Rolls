@@ -99,7 +99,18 @@ save_button.addEventListener('click', () => {
 // 頁面載入時 去mongoDB抓第一筆json資料 填入鋼琴卷軸
 document.addEventListener("DOMContentLoaded", function() {
   const fetchWorkouts = async () => {
-    const response = await fetch('https://portfolio.zesterisk.repl.co/api/workouts/')
+    const response = await fetch('https://portfolio.zesterisk.repl.co/api/workouts/', {
+      method: "GET", // *GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors, *cors, same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "omit", // include, *same-origin, omit
+      // headers: {
+      //   "Content-Type": "application/json",
+      // },
+      // redirect: "follow", // manual, *follow, error
+      // referrerPolicy: "no-referrer",
+      // body: JSON.stringify(data), // body data type must match "Content-Type" header
+    });
     const json = await response.json()
 
     if (response.ok) {
