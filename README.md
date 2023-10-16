@@ -4,7 +4,7 @@
 
 (但偶爾會因為replit的https憑證到期而打不開)
 
-沒有接上api的版本: https://qestiorisk.github.io/trying2code_Piano_Rolls/
+沒有接上api的版本: https://renhaohsu.github.io/trying2code_Piano_Rolls/
 
 想要寫一個webapp 可以編曲
 
